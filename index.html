@@ -4,22 +4,22 @@
   <meta charset="UTF-8" />
   <style>
     :root {
-      --text: #37352f;
-      --muted: #787774;
-      --border: #e9e4df;
+      --text: #2f3437;
+      --muted: #6f7377;
+      --border: #e8e2dd;
       --bg: #fffdfb;
 
       --blue-bg: #eef5fc;
-      --blue: #597493;
+      --blue: #5f7c9c;
 
       --rose-bg: #faeeee;
-      --rose: #a75f5e;
+      --rose: #b16461;
 
-      --gold-bg: #fbf2e5;
-      --gold: #b8873d;
+      --gold-bg: #fbf1e4;
+      --gold: #b8833c;
 
-      --lav-bg: #f1effb;
-      --lav: #6d6a95;
+      --lav-bg: #f0eefb;
+      --lav: #6f6d9a;
     }
 
     * {
@@ -37,28 +37,28 @@
 
     .project-widget {
       width: 100%;
-      height: 94px;
+      height: 104px;
       border: 1px solid var(--border);
-      border-radius: 7px;
+      border-radius: 9px;
       background: var(--bg);
-      padding: 9px 18px 11px 18px;
+      padding: 12px 18px 12px 18px;
     }
 
     .widget-title {
       display: flex;
       align-items: center;
       gap: 6px;
-      margin: 0 0 9px 0;
+      margin: 0 0 12px 0;
       font-size: 13px;
       line-height: 1;
       font-weight: 600;
-      color: var(--text);
+      color: #344052;
     }
 
     .title-icon {
       width: 13px;
       height: 13px;
-      color: #53606f;
+      color: #5f7c9c;
       flex-shrink: 0;
     }
 
@@ -78,19 +78,19 @@
     }
 
     .icon-wrap {
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       border-radius: 999px;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex: 0 0 38px;
+      flex: 0 0 36px;
     }
 
     .icon-wrap svg {
       width: 15px;
       height: 15px;
-      stroke-width: 2.1;
+      stroke-width: 2;
     }
 
     .blue {
@@ -120,10 +120,10 @@
 
     .label {
       margin: 0;
-      font-size: 11px;
+      font-size: 10.8px;
       line-height: 1.1;
       font-weight: 600;
-      color: var(--text);
+      color: #344052;
       white-space: nowrap;
     }
 
@@ -132,12 +132,12 @@
       font-size: 20px;
       line-height: 0.9;
       font-weight: 700;
-      color: var(--text);
+      color: #1f2933;
       letter-spacing: -0.04em;
     }
 
     .sub {
-      margin: 3px 0 0 0;
+      margin: 4px 0 0 0;
       font-size: 10px;
       line-height: 1.1;
       font-weight: 400;
@@ -147,7 +147,7 @@
 
     .divider {
       width: 1px;
-      height: 42px;
+      height: 44px;
       background: #eee7e2;
     }
 
@@ -178,8 +178,7 @@
   <div class="project-widget">
     <div class="widget-title">
       <svg class="title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/>
-        <path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15z"/>
+        <path d="M12 3.5l1.7 5 5 1.7-5 1.7-1.7 5-1.7-5-5-1.7 5-1.7 1.7-5z"/>
       </svg>
       <span>Project Overview</span>
     </div>
@@ -188,8 +187,9 @@
       <div class="stat">
         <div class="icon-wrap blue">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/>
-            <path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15z"/>
+            <path d="M12 3.5l1.7 5 5 1.7-5 1.7-1.7 5-1.7-5-5-1.7 5-1.7 1.7-5z"/>
+            <path d="M6 15.5l.8 2.2L9 18.5l-2.2.8L6 21.5l-.8-2.2L3 18.5l2.2-.8L6 15.5z"/>
+            <path d="M18 14l.6 1.6 1.6.6-1.6.6L18 18.5l-.6-1.7-1.7-.6 1.7-.6L18 14z"/>
           </svg>
         </div>
         <div class="text-block">
@@ -204,9 +204,11 @@
       <div class="stat">
         <div class="icon-wrap rose">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <rect x="5" y="7" width="14" height="12" rx="2"/>
-            <path d="M9 7V5.8A1.8 1.8 0 0 1 10.8 4h2.4A1.8 1.8 0 0 1 15 5.8V7"/>
-            <path d="M5 12h14"/>
+            <rect x="5.5" y="7.5" width="13" height="11" rx="2"/>
+            <path d="M9 7.5V6.2A2.2 2.2 0 0 1 11.2 4h1.6A2.2 2.2 0 0 1 15 6.2v1.3"/>
+            <path d="M5.5 12h13"/>
+            <path d="M10 12v1"/>
+            <path d="M14 12v1"/>
           </svg>
         </div>
         <div class="text-block">
@@ -221,8 +223,8 @@
       <div class="stat">
         <div class="icon-wrap gold">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <circle cx="12" cy="12" r="7"/>
-            <path d="M12 8v4l3 1.8"/>
+            <circle cx="12" cy="12" r="6.8"/>
+            <path d="M12 8.2v4.1l2.8 1.6"/>
           </svg>
         </div>
         <div class="text-block">
@@ -237,7 +239,7 @@
       <div class="stat">
         <div class="icon-wrap lavender">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M7.5 18h9.2a4.2 4.2 0 0 0 .4-8.4A5.2 5.2 0 0 0 7.1 8.2A4.9 4.9 0 0 0 7.5 18z"/>
+            <path d="M7.5 17.5h8.9a4 4 0 0 0 .4-8A5.1 5.1 0 0 0 7 8.3a4.7 4.7 0 0 0 .5 9.2z"/>
           </svg>
         </div>
         <div class="text-block">
