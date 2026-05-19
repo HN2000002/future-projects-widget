@@ -10,14 +10,49 @@ export default async function handler(req, res) {
     });
   }
 
+  const headers = {
+    "Authorization": `Bearer ${NOTION_TOKEN}`,
+    "Notion-Version": "2025-09-03",
+    "Content-Type": "application/json"
+  };
+
   try {
-    const response = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, {
+    // Step 1: retrieve the database container
+    const dbResponse = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}`, {
+      method: "GET",
+      headers
+    });
+
+    const dbData = await dbResponse.json();
+
+    if (!dbResponse.ok) {
+      return res.status(dbResponse.status).json({
+        error: "Could not retrieve database",
+        status: dbResponse.status,
+        message: dbData.message,
+        code: dbData.code,
+        hint: "The integration may be connected to the wrong workspace/database, or the database ID may be the wrong object."
+      });
+    }
+
+    // Step 2: try to find the real data source inside the database
+    const dataSources = dbData.data_sources || dbData.dataSources || [];
+
+    if (!dataSources.length) {
+      return res.status(400).json({
+        error: "No data sources found inside this database",
+        databaseId: DATABASE_ID,
+        databaseKeys: Object.keys(dbData),
+        hint: "This usually means this is a linked view or Notion has not exposed the source table to the integration."
+      });
+    }
+
+    const dataSourceId = dataSources[0].id;
+
+    // Step 3: query the actual data source
+    const response = await fetch(`https://api.notion.com/v1/data_sources/${dataSourceId}/query`, {
       method: "POST",
-      headers: {
-        "Authorization": `Bearer ${NOTION_TOKEN}`,
-        "Notion-Version": "2022-06-28",
-        "Content-Type": "application/json"
-      },
+      headers,
       body: JSON.stringify({
         page_size: 100
       })
@@ -27,10 +62,11 @@ export default async function handler(req, res) {
 
     if (!response.ok) {
       return res.status(response.status).json({
-        error: "Notion API error",
+        error: "Could not query data source",
         status: response.status,
         message: data.message,
-        code: data.code
+        code: data.code,
+        dataSourceId
       });
     }
 
@@ -49,7 +85,7 @@ export default async function handler(req, res) {
       if (phase) phasesFound.push(phase);
 
       if (phase === "Active this month") counts.active++;
-      if (phase === "Waiting on budget") counts.budget++;
+      if (phase === "Waiting on budget" || phase === "Waiting on Budget") counts.budget++;
       if (phase === "Ready soon") counts.ready++;
       if (phase === "Dreaming") counts.dreaming++;
     });
@@ -57,6 +93,8 @@ export default async function handler(req, res) {
     return res.status(200).json({
       ...counts,
       debug: {
+        databaseId: DATABASE_ID,
+        dataSourceId,
         totalPagesFound: data.results.length,
         phasesFound: [...new Set(phasesFound)],
         propertyNamesFoundOnFirstPage: data.results[0]
