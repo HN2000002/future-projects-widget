@@ -11,11 +11,11 @@ export default async function handler(req, res) {
   }
 
   try {
-    const response = await fetch(`https://api.notion.com/v1/data_sources/${DATABASE_ID}/query`, {
+    const response = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${NOTION_TOKEN}`,
-        "Notion-Version": "2025-09-03",
+        "Notion-Version": "2022-06-28",
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
